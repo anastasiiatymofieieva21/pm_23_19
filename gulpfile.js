@@ -7,7 +7,7 @@ const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
-// 1. Обробка HTML (підтримка @@include)
+// 1. Обробка HTML 
 function html() {
   return src('src/app/index.html')
     .pipe(fileInclude())
@@ -64,3 +64,21 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
 exports.default = parallel(html, styles, scripts, images, server, watching);
+const gulp = require('gulp');
+
+
+function copyBootstrapCSS() {
+    return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+        .pipe(gulp.dest('dist/css'));
+}
+
+
+function copyBootstrapJS() {
+    return gulp.src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+        .pipe(gulp.dest('dist/js'));
+}
+
+exports.css = copyBootstrapCSS;
+exports.js = copyBootstrapJS;
+
+exports.buildBootstrap = gulp.parallel(copyBootstrapCSS, copyBootstrapJS);

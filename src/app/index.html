@@ -4,18 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Лабораторна робота 1</title>
+
+  <!-- 1. Bootstrap CSS (спочатку) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- 2. Власні стилі (після Bootstrap) -->
   <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
-
-  <header>
-    <h1>Шапка мого сайту</h1>
-  </header>
-
+  @@include('components/_header.html')
+  
   <main>
     <p>Основна частина сторінки</p>
   </main>
 
+  <!-- 1. Bootstrap JS (спочатку) -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- 2. Власні скрипти (після Bootstrap) -->
   <script src="js/main.min.js"></script>
 </body>
 </html>
