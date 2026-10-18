@@ -1,0 +1,132 @@
+.sidebar-section {
+  position: relative;
+  z-index: 2;
+  background-color: $dark-bg;
+  color: $text-light;
+  height: 100%;
+  padding: ($base-padding * 2) !important;
+
+  
+
+  // Перевизначаємо дрібний Bootstrap-клас .small для всього сайдбару
+  .small, small {
+    font-size: 0.95rem; // Збільшено з 0.875rem (14px)
+  }
+
+  // Фотографія
+  .profile-photo {
+    .photo-wrapper {
+      border: 8px solid white;
+      display: inline-block;
+      padding: 0;
+      img {
+        width: 100%;
+        max-width: 280px;
+        display: block;
+      }
+    }
+  }
+
+  // Заголовки секцій (EDUCATION, REFERENCES, LANGUAGES)
+  .sidebar-title {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid white;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    font-size: 1.75rem; // Збільшено (було 1.6rem)
+    letter-spacing: 1px;
+
+    .icon-box-sidebar {
+      @include flex-center;
+      width: $icon-sidebar-size;
+      height: $icon-sidebar-size;
+      background-color: $primary-yellow;
+      color: $dark-bg;
+      margin-right: 12px;
+      font-size: $icon-sidebar-size * 0.5;
+    }
+  }
+
+  // Блок Освіта
+  .education-item {
+    h6 {
+      font-size: 1.15rem; // Назви ступенів (MASTER DEGREE)
+      letter-spacing: 0.5px;
+    }
+
+    .vertical-date {
+      background-color: $primary-yellow;
+      color: $dark-bg;
+      font-weight: 800;
+      font-size: 0.85rem; // Збільшено (було 0.75rem)
+      padding: 0.6rem 0.3rem;
+      display: block;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .text-light-gray {
+      color: #ced4da;
+      font-weight: 300;
+      line-height: 1.5;
+      font-size: 0.95rem; // Опис закладу/курсу
+    }
+  }
+
+  // Блок Рекомендації
+  .reference-item {
+    h6 {
+      letter-spacing: 1px;
+      font-size: 1.15rem; // Імена (DARWIN B. MAGANA)
+    }
+
+    .ref-address {
+      color: $primary-yellow;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.95rem; // Збільшено (було 0.85rem)
+    }
+
+    p {
+      font-size: 0.95rem; // Телефон та Email
+      line-height: 1.4;
+    }
+  }
+
+  // Блок Мови
+  .languages-list {
+    li {
+      .lang-name {
+        position: relative;
+        padding-left: 20px;
+        font-size: 1.05rem; // Збільшено (було 0.9rem)
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: $primary-yellow;
+        }
+      }
+
+      .custom-progress {
+        width: 55%;
+        height: 4px; // Трохи товстіша лінія для кращої видимості
+        background-color: #495057;
+        
+        .custom-progress-bar {
+          height: 100%;
+          background-color: $primary-yellow;
+        }
+      }
+    }
+  }
+}

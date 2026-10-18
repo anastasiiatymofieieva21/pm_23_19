@@ -7,7 +7,19 @@ const uglify = require('gulp-uglify');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
-// 1. Обробка HTML 
+// 1. Копіювання CSS Bootstrap
+function copyBootstrapCSS() {
+  return src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(dest('dist/css'));
+}
+
+// 2. Копіювання JS Bootstrap
+function copyBootstrapJS() {
+  return src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    .pipe(dest('dist/js'));
+}
+
+// 3. Обробка HTML 
 function html() {
   return src('src/app/index.html')
     .pipe(fileInclude())
@@ -15,17 +27,19 @@ function html() {
     .pipe(browserSync.stream());
 }
 
-// 2. Компіляція SCSS у CSS + мініфікація
+// 4. Компіляція SCSS у CSS + мініфікація (ОНОВЛЕНО ДЛЯ ЛАБОРАТОРНОЇ)
 function styles() {
-  return src('src/app/scss/**/*.scss')
+  // Беремо лише головний файл main.scss, оскільки він через @import підтягне всі інші
+  return src('src/app/scss/main.scss')
     .pipe(scss().on('error', scss.logError))
     .pipe(cssnano())
-    .pipe(concat('style.min.css'))
+    // Змінено назву вихідного файлу на index.min.css відповідно до пункту 3 завдання
+    .pipe(concat('index.min.css'))
     .pipe(dest('dist/css'))
     .pipe(browserSync.stream());
 }
 
-// 3. Обробка JavaScript (об'єднання та мініфікація)
+// 5. Обробка JavaScript (об'єднання та мініфікація)
 function scripts() {
   return src('src/app/js/**/*.js')
     .pipe(concat('main.min.js'))
@@ -34,14 +48,14 @@ function scripts() {
     .pipe(browserSync.stream());
 }
 
-// 4. Оптимізація зображень
+// 6. Оптимізація зображень
 function images() {
-  return src('src/app/imgs/**/*')
+  return src('src/app/images/**/*', {encoding: false})
     .pipe(imagemin())
-    .pipe(dest('dist/imgs'));
+    .pipe(dest('dist/images'));
 }
 
-// 5. Локальний сервер BrowserSync
+// 7. Локальний сервер BrowserSync
 function server() {
   browserSync.init({
     server: {
@@ -50,35 +64,21 @@ function server() {
   });
 }
 
-// 6. Watcher (відслідковування змін у файлах)
+// 8. Watcher (відслідковування змін у файлах)
 function watching() {
   watch(['src/app/**/*.html'], html);
+  // Слідкуємо за всіма .scss файлами, щоб при зміні будь-якого модуля Gulp перезібрав main.scss
   watch(['src/app/scss/**/*.scss'], styles);
   watch(['src/app/js/**/*.js'], scripts);
-  watch(['src/app/imgs/**/*'], images);
+  watch(['src/app/images/**/*'], images);
 }
 
-// Експорт тасків
+// Експорт окремих тасків
 exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
-exports.default = parallel(html, styles, scripts, images, server, watching);
-const gulp = require('gulp');
+exports.bootstrap = parallel(copyBootstrapCSS, copyBootstrapJS);
 
-
-function copyBootstrapCSS() {
-    return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
-        .pipe(gulp.dest('dist/css'));
-}
-
-
-function copyBootstrapJS() {
-    return gulp.src('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
-        .pipe(gulp.dest('dist/js'));
-}
-
-exports.css = copyBootstrapCSS;
-exports.js = copyBootstrapJS;
-
-exports.buildBootstrap = gulp.parallel(copyBootstrapCSS, copyBootstrapJS);
+// Головний таск
+exports.default = parallel(copyBootstrapCSS, copyBootstrapJS, html, styles, scripts, images, server, watching);

@@ -1,0 +1,65 @@
+
+
+
+.icon-box {
+
+  @include flex-center;
+  width: $icon-box-size;
+  height: $icon-box-size;
+  background-color: $primary-yellow;
+  color: #000;
+  font-size: $icon-box-size * 0.5;
+}
+
+.resume-header {
+.header-yellow-block {
+position: relative;
+
+padding: $base-padding $base-padding $base-padding ($base-padding * 3);
+z-index: 1;
+
+// Створюємо фон, який вилазить за межі блоку вліво
+&::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100vh; 
+  right: 0;
+  background-color: $primary-yellow;
+  z-index: -1; 
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 0.9;  
+  letter-spacing: 1px;
+  
+  .fw-bolder {
+    font-weight: 900 !important; // Максимальна жирність для "BRIAN D."
+  }
+  
+  .fw-light {
+    font-weight: 300 !important; // Тонкі лінії для "PATERSON"
+  }
+}
+
+p {
+  letter-spacing: 4px; // Сильно розтягуємо літери, як на макеті
+  font-size: 1.1rem;
+}
+
+
+
+}
+
+.contact-info {
+li {
+@extend %bottom-border-list;
+
+  
+}
+
+
+}
+}

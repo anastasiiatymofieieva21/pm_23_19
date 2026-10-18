@@ -1,0 +1,57 @@
+// src/app/scss/_skills-hobbies.scss
+
+// Міксін для Flexbox-вирівнювання між назвою та смужкою прогресу
+@mixin flex-between-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skills-hobbies-section {
+  
+  // Відступи та розмір шрифту для заголовків
+  .main-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-list {
+    li {
+      .progress-item-wrapper {
+        @include flex-between-center; // <--- Збережено міксін для Flexbox
+      }
+
+      .item-name {
+        position: relative;
+        padding-left: 15px; // Відступ для маркера
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: $dark-bg;
+        
+        // Маленький жовтий квадрат-маркер зліва від тексту (звичайний CSS)
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 8px;
+          height: 8px;
+          background-color: $primary-yellow;
+        }
+      }
+
+      // Власні тонкі стильні прогрес-бари
+      .custom-progress {
+        width: 45%; // Смужка займає 45% ширини колонки
+        height: 4px; // Тонка лінія
+        background-color: #e9ecef; // Світло-сірий фон
+        
+        .custom-progress-bar {
+          height: 100%;
+          background-color: $primary-yellow; // Жовте заповнення
+        }
+      }
+    }
+  }
+}

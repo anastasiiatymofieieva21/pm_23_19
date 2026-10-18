@@ -1,0 +1,83 @@
+.main-section {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  min-height: 100vh;
+
+  // Заголовок секції
+  .main-title {
+    display: flex;
+    align-items: center;
+    @extend %bottom-border-list;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: $dark-bg;
+    text-transform: uppercase;
+
+    .icon-box-main {
+     @include flex-center;
+      width: 35px;
+      height: 35px;
+      background-color: $primary-yellow;
+      color: $dark-bg;
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+  }
+
+  // Блок Досвіду Роботи
+  .experience-item {
+    margin-bottom: 2.5rem;
+
+    .date-col {
+      flex-shrink: 0;
+    }
+
+    .vertical-date {
+      background-color: $primary-yellow;
+      color: $dark-bg;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.8rem 0.4rem;
+      display: inline-block;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: center;
+      letter-spacing: 1px;
+      min-height: 110px; // Робить жовті блоки однакової висоти
+    }
+
+    .info-col {
+      padding-top: 0.2rem;
+
+      .company-name {
+        font-weight: 800;
+        font-size: 1.1rem;
+        font-style: italic; // Курсив для назви компанії
+      }
+
+      .company-location {
+        font-weight: 400;
+        font-size: 0.95rem;
+        font-style: italic; // Курсив для локації
+        margin-bottom: 0.5rem;
+      }
+
+      .job-title {
+        font-weight: 900;
+        font-size: 1.3rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        color: $dark-bg;
+      }
+
+      .job-desc {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #333; // Трохи світліший чорний для комфортного читання
+      }
+    }
+  }
+}

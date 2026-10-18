@@ -3,23 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лабораторна робота 1</title>
+  <title>Лабораторна робота 2 - Резюме</title>
 
-  <!-- 1. Bootstrap CSS (спочатку) -->
+  
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- 2. Власні стилі (після Bootstrap) -->
-  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/index.min.css">
 </head>
 <body>
-  @@include('components/_header.html')
-  
-  <main>
-    <p>Основна частина сторінки</p>
-  </main>
+<div class="container-fluid p-4 bg-white resume-container">
+  <div class="row g-0 ">
+    
+    <aside class="col-md-4 bg-dark text-white p-4 sidebar-section d-flex flex-column justify-content-between">
+      @@include('components/sidebar.html')
+    </aside>
+    
+    <main class="col-md-8 p-5 main-section">
+      @@include('components/header.html')
+      
+      
+      @@include('components/experience.html')
 
-  <!-- 1. Bootstrap JS (спочатку) -->
+    
+      @@include('components/skills-hobbies.html')
+    </main>
+    
+  </div>
+</div>
+ 
+  <!-- Всі скрипти збережено -->
   <script src="js/bootstrap.bundle.min.js"></script>
-  <!-- 2. Власні скрипти (після Bootstrap) -->
   <script src="js/main.min.js"></script>
 </body>
 </html>
