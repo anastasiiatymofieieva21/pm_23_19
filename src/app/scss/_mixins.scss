@@ -1,4 +1,4 @@
-// 1. Міксін для швидкого центрування елементів (наприклад, іконки в квадратику)
+
 @mixin flex-center {
 display: flex;
 justify-content: center;
@@ -10,8 +10,7 @@ align-items: center;
   justify-content: space-between;
 }
 
-// 2. Шаблон для наслідування через @extend (вимога лабораторної №3)
-// Ми застосуємо це до ліній під контактами
+
 %bottom-border-list {
 border-bottom: 2px solid $dark-bg;
 padding-bottom: 0.5rem;
